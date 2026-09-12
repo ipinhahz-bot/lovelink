@@ -48,8 +48,8 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.2.0
-          name: "My Boy 💕 & My Girl 💙 APKs v1.2.0 (Mobile Native UI)"
+          tag_name: v1.3.0
+          name: "My Boy 💕 & My Girl 💙 v1.3.0 (Layar Pas HP)"
           body: |
             ## 📱 Tampilan 100% Seperti WhatsApp Asli (Bukan Web)!
             

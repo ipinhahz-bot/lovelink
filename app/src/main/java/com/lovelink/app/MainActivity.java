@@ -98,7 +98,12 @@ public class MainActivity extends AppCompatActivity {
     private void setupWebView() {
         WebSettings settings = webView.getSettings();
 
-        // Must use desktop user agent so WhatsApp Web activates pairing code and web client
+        // 100% Pas di layar HP: matikan scroll horizontal & cegah overscroll
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
+        webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
+
+        // Desktop User Agent agar tombol pairing muncul
         settings.setUserAgentString(DESKTOP_USER_AGENT);
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -106,7 +111,7 @@ public class MainActivity extends AppCompatActivity {
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(true);
+        settings.setBuiltInZoomControls(false);
         settings.setDisplayZoomControls(false);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
