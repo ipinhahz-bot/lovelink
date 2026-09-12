@@ -1,50 +1,69 @@
 // Auto-Fit & Mobile Native UI for WhatsApp Web
 (function() {
     function fitScreen() {
-        // 1. Sembunyikan banner download desktop yang mengganggu
-        var banners = document.querySelectorAll('header, ._ak8j, [data-testid="intro-md-beta-logo-light"], div[class*="banner"]');
-        for (var i = 0; i < banners.length; i++) {
-            banners[i].style.display = 'none';
-        }
-
-        // 2. Pastikan kartu QR & Login nomor HP pas 100% di layar HP (tidak terpotong)
-        var card = document.querySelector('div[data-ref]') || 
-                   document.querySelector('._ak97') || 
-                   document.querySelector('._ak96') || 
-                   document.querySelector('div[class*="landing-window"]') ||
-                   document.querySelector('div[class*="landing-wrapper"]');
-
-        if (card) {
-            var screenW = window.innerWidth || document.documentElement.clientWidth;
-            var cardW = card.offsetWidth || card.scrollWidth;
-            if (screenW > 0 && cardW > screenW) {
-                var scale = (screenW - 16) / cardW;
-                card.style.transformOrigin = 'top center';
-                card.style.transform = 'scale(' + scale + ')';
-                card.style.margin = '10px auto';
+        try {
+            // 1. Set viewport lebar tetap 800px agar TIDAK terpotong ke kanan!
+            var meta = document.querySelector('meta[name="viewport"]');
+            if (!meta) {
+                meta = document.createElement('meta');
+                meta.name = 'viewport';
+                (document.head || document.documentElement).appendChild(meta);
             }
-        }
+            if (meta.content !== 'width=800, user-scalable=yes') {
+                meta.content = 'width=800, user-scalable=yes';
+            }
 
-        // 3. Tampilan Chat 1-Kolom Full Screen Murni
-        var main = document.getElementById('main');
-        var side = document.getElementById('side');
-        var hasActiveChat = main && (main.querySelector('footer') || main.querySelector('div[contenteditable="true"]'));
+            // 2. Sembunyikan banner download desktop WhatsApp untuk Windows
+            var banners = document.querySelectorAll('header, [data-testid="intro-md-beta-logo-light"], div[class*="banner"]');
+            for (var i = 0; i < banners.length; i++) {
+                banners[i].style.display = 'none';
+            }
 
-        if (hasActiveChat && main && side) {
-            main.style.display = 'flex';
-            main.style.position = 'fixed';
-            main.style.top = '0';
-            main.style.left = '0';
-            main.style.width = '100vw';
-            main.style.height = '100vh';
-            main.style.zIndex = '9999';
-            side.style.display = 'none';
-            ensureBackButton();
-        } else if (side) {
-            side.style.display = 'flex';
-            side.style.width = '100vw';
-            if (main) main.style.display = 'none';
-        }
+            // 3. Sembunyikan juga elemen banner yang ada di screenshot (kotak laptop)
+            var allDivs = document.querySelectorAll('div');
+            for (var j = 0; j < allDivs.length; j++) {
+                var d = allDivs[j];
+                if (d.innerText && (d.innerText.indexOf('Unduh WhatsApp untuk Windows') !== -1 || d.innerText.indexOf('Dapatkan aplikasi') !== -1)) {
+                    // Cari kontainer pembungkusnya
+                    if (d.offsetWidth > 200 && d.offsetHeight < 150) {
+                        d.style.display = 'none';
+                    }
+                }
+            }
+
+            // 4. Pastikan kartu login / QR berada rapi di tengah
+            var card = document.querySelector('div[data-ref]') || 
+                       document.querySelector('._ak97') || 
+                       document.querySelector('._ak96') || 
+                       document.querySelector('div[class*="landing-window"]') ||
+                       document.querySelector('div[class*="landing-wrapper"]');
+
+            if (card) {
+                card.style.margin = '10px auto';
+                card.style.float = 'none';
+            }
+
+            // 5. Tampilan Chat 1-Kolom Full Screen Murni Saat Obrolan Dibuka
+            var main = document.getElementById('main');
+            var side = document.getElementById('side');
+            var hasActiveChat = main && (main.querySelector('footer') || main.querySelector('div[contenteditable="true"]'));
+
+            if (hasActiveChat && main && side) {
+                main.style.display = 'flex';
+                main.style.position = 'fixed';
+                main.style.top = '0';
+                main.style.left = '0';
+                main.style.width = '100vw';
+                main.style.height = '100vh';
+                main.style.zIndex = '9999';
+                side.style.display = 'none';
+                ensureBackButton();
+            } else if (side) {
+                side.style.display = 'flex';
+                side.style.width = '100vw';
+                if (main) main.style.display = 'none';
+            }
+        } catch(e) {}
     }
 
     function ensureBackButton() {
@@ -71,6 +90,6 @@
         header.insertBefore(btn, header.firstChild);
     }
 
-    setInterval(fitScreen, 200);
+    setInterval(fitScreen, 300);
     fitScreen();
 })();

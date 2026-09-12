@@ -48,16 +48,16 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.5.0
-          name: "My Boy 💕 & My Girl 💙 v1.5.0 (True Full Screen Murni)"
+          tag_name: v1.6.0
+          name: "My Boy 💕 & My Girl 💙 v1.6.0 (Fix Layar Pas & Theme Inject)"
           body: |
-            ## 📱 Pembaruan v1.5.0: 100% Fullscreen Murni Tanpa Bar Atas!
+            ## 📱 Pembaruan v1.6.0: Perbaikan Total Skala Layar & Auto-Fit!
             
-            Pembaruan v1.5.0:
-            * 🚀 **True Immersive Full Screen:** Bar atas dan status bar dihilangkan total. Layar 100% dipenuhi WhatsApp dari ujung atas sampai bawah.
-            * 🎯 **Kartu QR & Login Nomor Otomatis Pas di Layar:** Auto-scaling presisi, tidak ada bagian yang terpotong ke kanan.
-            * 🚫 **Banner Desktop 'Unduh WhatsApp untuk Windows' Dihapus Total.**
-            * 💬 **1-Kolom Full Screen:** Obrolan terbuka penuh layaknya aplikasi Android asli.
+            Pembaruan v1.6.0:
+            * 🎯 **Tampilan 100% Pas di Layar HP:** Menggunakan viewport dan InitialScale dinamis berbasis resolusi layar HP, sehingga kotak QR dan nomor telepon TIDAK terpotong lagi ke kanan.
+            * 🎨 **Injeksi Tema CSP-Safe:** Menggunakan TextNode langsung agar tema warna (Pink Pastel / Dark Blue) tembus proteksi WhatsApp Web.
+            * 🚫 **Banner Desktop Dihilangkan:** Kotak 'Unduh WhatsApp untuk Windows' otomatis disembunyikan.
+            * 💬 **Chat 1-Kolom Fullscreen:** Begitu akun tertaut, obrolan tampil 1-kolom penuh layaknya WA asli.
             
             ### Unduh File APK:
             * **[MyBoy.apk](MyBoy.apk)**: Untuk cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).
