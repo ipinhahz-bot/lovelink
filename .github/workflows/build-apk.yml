@@ -48,16 +48,16 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.4.0
-          name: "My Boy 💕 & My Girl 💙 v1.4.0 (Full Screen & 100% Pas di Layar)"
+          tag_name: v1.5.0
+          name: "My Boy 💕 & My Girl 💙 v1.5.0 (True Full Screen Murni)"
           body: |
-            ## 📱 Pembaruan Total: Layar 100% Pas di HP & Full Screen Asli!
+            ## 📱 Pembaruan v1.5.0: 100% Fullscreen Murni Tanpa Bar Atas!
             
-            Pembaruan v1.4.0:
-            * 🚀 **100% Full Screen Edge-to-Edge:** Header pink statis dihilangkan, aplikasi tampil penuh seperti WhatsApp asli.
-            * 🎯 **Kartu QR & Login Nomor Pas di Layar:** Tidak ada lagi bagian yang terpotong! Kotak QR dan tombol otomatis pas di tengah layar HP.
-            * 🚫 **Banner Desktop Dihilangkan:** 'Unduh WhatsApp untuk Windows' disembunyikan total.
-            * ✨ **Floating Love Button:** Tombol cinta mini di pojok kanan bawah (ketuk untuk hujan hati, tekan lama untuk reload).
+            Pembaruan v1.5.0:
+            * 🚀 **True Immersive Full Screen:** Bar atas dan status bar dihilangkan total. Layar 100% dipenuhi WhatsApp dari ujung atas sampai bawah.
+            * 🎯 **Kartu QR & Login Nomor Otomatis Pas di Layar:** Auto-scaling presisi, tidak ada bagian yang terpotong ke kanan.
+            * 🚫 **Banner Desktop 'Unduh WhatsApp untuk Windows' Dihapus Total.**
+            * 💬 **1-Kolom Full Screen:** Obrolan terbuka penuh layaknya aplikasi Android asli.
             
             ### Unduh File APK:
             * **[MyBoy.apk](MyBoy.apk)**: Untuk cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).

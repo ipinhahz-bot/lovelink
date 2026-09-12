@@ -4,7 +4,6 @@ import android.Manifest;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.SuppressLint;
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
@@ -12,6 +11,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Base64;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.AccelerateInterpolator;
 import android.webkit.CookieManager;
 import android.webkit.PermissionRequest;
@@ -22,7 +23,6 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.FrameLayout;
-import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,46 +52,33 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
 
         initViews();
         setupPermissions();
         setupWebView();
         setupBackNavigation();
-
-        // Show quick guide dialog on first open
-        showGuideDialog(false);
     }
 
     private void initViews() {
         webView = findViewById(R.id.webView);
         progressBar = findViewById(R.id.progressBar);
         heartsContainer = findViewById(R.id.heartsContainer);
-
-        com.google.android.material.floatingactionbutton.FloatingActionButton fabLove = findViewById(R.id.fabLove);
-        if (fabLove != null) {
-            fabLove.setOnClickListener(v -> {
-                spawnFloatingHearts();
-                Toast.makeText(this, getString(R.string.love_sent), Toast.LENGTH_SHORT).show();
-            });
-            fabLove.setOnLongClickListener(v -> {
-                Toast.makeText(this, "Memuat ulang WhatsApp...", Toast.LENGTH_SHORT).show();
-                webView.reload();
-                return true;
-            });
-        }
     }
 
     @SuppressLint("SetJavaScriptEnabled")
     private void setupWebView() {
         WebSettings settings = webView.getSettings();
 
-        // 100% Pas di layar HP: matikan scroll horizontal & cegah overscroll
+        // 100% Full Screen & Pas di Layar HP
         webView.setHorizontalScrollBarEnabled(false);
+        webView.setVerticalScrollBarEnabled(true);
         webView.setOverScrollMode(View.OVER_SCROLL_NEVER);
         webView.setScrollBarStyle(View.SCROLLBARS_INSIDE_OVERLAY);
 
-        // Desktop User Agent agar tombol pairing muncul
         settings.setUserAgentString(DESKTOP_USER_AGENT);
         settings.setJavaScriptEnabled(true);
         settings.setDomStorageEnabled(true);
@@ -99,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setSupportZoom(true);
-        settings.setBuiltInZoomControls(false);
+        settings.setBuiltInZoomControls(true);
         settings.setDisplayZoomControls(false);
         settings.setAllowFileAccess(true);
         settings.setAllowContentAccess(true);
@@ -152,6 +139,7 @@ public class MainActivity extends AppCompatActivity {
             public void onPageStarted(WebView view, String url, Bitmap favicon) {
                 super.onPageStarted(view, url, favicon);
                 progressBar.setVisibility(View.VISIBLE);
+                injectCustomTheme();
             }
 
             @Override
@@ -159,9 +147,10 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
                 progressBar.setVisibility(View.GONE);
                 injectCustomTheme();
-                view.postDelayed(MainActivity.this::injectCustomTheme, 800);
-                view.postDelayed(MainActivity.this::injectCustomTheme, 2000);
-                view.postDelayed(MainActivity.this::injectCustomTheme, 4000);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 600);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 1500);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 3000);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 6000);
             }
 
             @Override
@@ -181,7 +170,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void injectCustomTheme() {
         try {
-            // 1. Inject custom CSS (theme and mobile 1-column layout)
+            // 1. Injeksi CSS
             InputStream is = getAssets().open("custom.css");
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
@@ -191,10 +180,10 @@ public class MainActivity extends AppCompatActivity {
                     "style.id = 'custom-lovelink-css';" +
                     "style.type = 'text/css';" +
                     "style.innerHTML = window.atob('" + encodedCss + "');" +
-                    "if (!document.getElementById('custom-lovelink-css')) { document.head.appendChild(style); }";
+                    "if (!document.getElementById('custom-lovelink-css')) { (document.head || document.documentElement).appendChild(style); }";
             webView.evaluateJavascript(cssJs, null);
 
-            // 2. Inject mobile adapter JS (viewport and back navigation)
+            // 2. Injeksi Mobile Adapter JS
             InputStream isJs = getAssets().open("mobile_adapter.js");
             byte[] jsBuffer = new byte[isJs.available()];
             isJs.read(jsBuffer);
@@ -205,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void spawnFloatingHearts() {
+    public void spawnFloatingHearts() {
         String[] emojis = BuildConfig.IS_GIRL ?
                 new String[]{"💕", "💖", "🥰", "🌸", "✨", "❤️", "🌹"} :
                 new String[]{"💙", "✨", "🤍", "⭐", "💫"};
@@ -244,18 +233,6 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void showGuideDialog(boolean force) {
-        if (!force) {
-            // Bisa dilewati saat otomatis buka jika tidak diinginkan
-            return;
-        }
-        new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.guide_title))
-                .setMessage(getString(R.string.guide_message))
-                .setPositiveButton(getString(R.string.btn_close), (dialog, which) -> dialog.dismiss())
-                .show();
-    }
-
     private void setupPermissions() {
         String[] permissions = {
                 Manifest.permission.CAMERA,
@@ -279,8 +256,11 @@ public class MainActivity extends AppCompatActivity {
             public void handleOnBackPressed() {
                 webView.evaluateJavascript(
                         "(function() { " +
-                        "  if (document.body.classList.contains('chat-open')) { " +
-                        "    document.body.classList.remove('chat-open'); " +
+                        "  var main = document.getElementById('main'); " +
+                        "  var side = document.getElementById('side'); " +
+                        "  if (main && main.style.display !== 'none' && side) { " +
+                        "    main.style.display = 'none'; " +
+                        "    side.style.display = 'flex'; " +
                         "    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true })); " +
                         "    return 'handled'; " +
                         "  } " +

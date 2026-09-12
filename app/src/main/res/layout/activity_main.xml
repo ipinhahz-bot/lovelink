@@ -1,34 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/primaryDarkColor">
+    android:background="@android:color/black">
 
-    <!-- 100% Full Screen WebView (Edge-to-Edge Seperti WA Asli) -->
+    <!-- 100% Fullscreen WebView Murni Edge-to-Edge -->
     <WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_height="match_parent" />
 
-    <!-- Subtle Progress Bar at the very top -->
+    <!-- Subtle Loading Bar -->
     <ProgressBar
         android:id="@+id/progressBar"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
         android:layout_height="3dp"
         android:max="100"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:visibility="gone" />
 
-    <!-- Overlay container for floating hearts/animations -->
+    <!-- Hearts Container -->
     <FrameLayout
         android:id="@+id/heartsContainer"
         android:layout_width="match_parent"
@@ -36,19 +28,4 @@
         android:clickable="false"
         android:focusable="false" />
 
-    <!-- Mini Floating Love Button in Corner (Tidak mengganggu layar WhatsApp) -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabLove"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:contentDescription="Cinta &amp; Refresh"
-        app:fabSize="mini"
-        app:elevation="4dp"
-        app:backgroundTint="@color/primaryColor"
-        app:tint="@color/textOnPrimary"
-        app:srcCompat="@android:drawable/btn_star_big_on"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+</FrameLayout>
