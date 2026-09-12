@@ -24,20 +24,12 @@ jobs:
 
       - name: Setup Gradle
         uses: gradle/actions/setup-gradle@v3
-
-      - name: Make Gradle executable
-        run: |
-          if [ -f "./gradlew" ]; then
-            chmod +x gradlew
-          fi
+        with:
+          gradle-version: '8.5'
 
       - name: Build Both Girl & Boy APKs
         run: |
-          if [ -f "./gradlew" ]; then
-            ./gradlew assembleGirlDebug assembleBoyDebug --stacktrace
-          else
-            gradle assembleGirlDebug assembleBoyDebug --stacktrace
-          fi
+          gradle assembleGirlDebug assembleBoyDebug --stacktrace
 
       - name: Prepare APK Outputs
         run: |
