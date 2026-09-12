@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
         ImageButton btnRefresh = findViewById(R.id.btnRefresh);
 
         if (BuildConfig.IS_GIRL) {
-            tvTitle.setText("LoveLink 💕");
+            tvTitle.setText("My Boy 💕");
             tvSubtitle.setText("Ruang Cinta Kita • Tautkan Jarak Jauh");
         } else {
-            tvTitle.setText("LoveLink 💙");
+            tvTitle.setText("My Girl 💙");
             tvSubtitle.setText("Ruang Pribadi Kita • Tautkan Jarak Jauh");
         }
 

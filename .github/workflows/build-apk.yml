@@ -34,36 +34,36 @@ jobs:
       - name: Prepare APK Outputs
         run: |
           mkdir -p release-apks
-          find app/build/outputs/apk/girl/debug -name "*.apk" -exec cp {} release-apks/LoveLink-Girl.apk \;
-          find app/build/outputs/apk/boy/debug -name "*.apk" -exec cp {} release-apks/LoveLink-Boy.apk \;
+          find app/build/outputs/apk/girl/debug -name "*.apk" -exec cp {} release-apks/MyBoy.apk \;
+          find app/build/outputs/apk/boy/debug -name "*.apk" -exec cp {} release-apks/MyGirl.apk \;
           ls -la release-apks/
 
       - name: Upload APKs as Artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: LoveLink-APKs
+          name: MyBoy-and-MyGirl-APKs
           path: release-apks/*.apk
 
       - name: Create GitHub Release with APKs
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.0.0
-          name: "LoveLink APKs v1.0.0"
+          tag_name: v1.1.0
+          name: "My Boy 💕 & My Girl 💙 APKs (Custom Photo Icons)"
           body: |
-            ## 💕 LoveLink APKs Siap Install!
+            ## 💕 Aplikasi Khusus Kita Berdua Siap Dipasang!
             
-            Silakan unduh file APK sesuai perangkat:
-            * **[LoveLink-Girl.apk](LoveLink-Girl.apk)**: Khusus untuk pasanganmu (Tema Pink Pastel Lucu & Gemas).
-            * **[LoveLink-Boy.apk](LoveLink-Boy.apk)**: Khusus untuk kamu (Tema Dark Blue Elegan).
+            Silakan download file APK sesuai perangkat:
+            * **[MyBoy.apk](MyBoy.apk)**: Khusus dipasang di HP cewekmu (Nama aplikasi: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).
+            * **[MyGirl.apk](MyGirl.apk)**: Khusus dipasang di HP kamu (Nama aplikasi: **My Girl 💙**, Ikon: Foto cewekmu, Tema Dark Blue).
             
             ### Cara Pakai Tanpa Scan QR:
-            1. Buka APK di HP pasangan.
+            1. Buka aplikasi di HP cewekmu.
             2. Klik **"Tautkan dengan nomor telepon"** & masukkan nomor WA kamu.
             3. Muncul kode 8 digit $\rightarrow$ buka WA utama $\rightarrow$ Perangkat Tertaut $\rightarrow$ Masukkan kode tersebut.
             4. Selesai!
           files: |
-            release-apks/LoveLink-Girl.apk
-            release-apks/LoveLink-Boy.apk
+            release-apks/MyBoy.apk
+            release-apks/MyGirl.apk
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
