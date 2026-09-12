@@ -68,30 +68,18 @@ public class MainActivity extends AppCompatActivity {
         progressBar = findViewById(R.id.progressBar);
         heartsContainer = findViewById(R.id.heartsContainer);
 
-        TextView tvTitle = findViewById(R.id.tvAppTitle);
-        TextView tvSubtitle = findViewById(R.id.tvSubtitle);
-        ImageButton btnGuide = findViewById(R.id.btnGuide);
-        ImageButton btnLove = findViewById(R.id.btnLove);
-        ImageButton btnRefresh = findViewById(R.id.btnRefresh);
-
-        if (BuildConfig.IS_GIRL) {
-            tvTitle.setText("My Boy 💕");
-            tvSubtitle.setText("Ruang Cinta Kita • Tautkan Jarak Jauh");
-        } else {
-            tvTitle.setText("My Girl 💙");
-            tvSubtitle.setText("Ruang Pribadi Kita • Tautkan Jarak Jauh");
+        com.google.android.material.floatingactionbutton.FloatingActionButton fabLove = findViewById(R.id.fabLove);
+        if (fabLove != null) {
+            fabLove.setOnClickListener(v -> {
+                spawnFloatingHearts();
+                Toast.makeText(this, getString(R.string.love_sent), Toast.LENGTH_SHORT).show();
+            });
+            fabLove.setOnLongClickListener(v -> {
+                Toast.makeText(this, "Memuat ulang WhatsApp...", Toast.LENGTH_SHORT).show();
+                webView.reload();
+                return true;
+            });
         }
-
-        btnGuide.setOnClickListener(v -> showGuideDialog(true));
-        btnRefresh.setOnClickListener(v -> {
-            Toast.makeText(this, "Memuat ulang WhatsApp...", Toast.LENGTH_SHORT).show();
-            webView.reload();
-        });
-
-        btnLove.setOnClickListener(v -> {
-            spawnFloatingHearts();
-            Toast.makeText(this, getString(R.string.love_sent), Toast.LENGTH_SHORT).show();
-        });
     }
 
     @SuppressLint("SetJavaScriptEnabled")
@@ -171,6 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 super.onPageFinished(view, url);
                 progressBar.setVisibility(View.GONE);
                 injectCustomTheme();
+                view.postDelayed(MainActivity.this::injectCustomTheme, 800);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 2000);
+                view.postDelayed(MainActivity.this::injectCustomTheme, 4000);
             }
 
             @Override

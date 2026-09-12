@@ -48,20 +48,20 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.3.0
-          name: "My Boy 💕 & My Girl 💙 v1.3.0 (Layar Pas HP)"
+          tag_name: v1.4.0
+          name: "My Boy 💕 & My Girl 💙 v1.4.0 (Full Screen & 100% Pas di Layar)"
           body: |
-            ## 📱 Tampilan 100% Seperti WhatsApp Asli (Bukan Web)!
+            ## 📱 Pembaruan Total: Layar 100% Pas di HP & Full Screen Asli!
             
-            Pembaruan v1.2.0:
-            * ✅ **Tata Letak 1-Kolom Full Screen:** Daftar chat selebar layar HP tanpa pembagian kolom desktop kaku.
-            * ✅ **Buka Chat Responsif:** Klik kontak langsung membuka ruang obrolan penuh dengan animasi slide mulus.
-            * ✅ **Tombol Kembali (Back):** Tombol panah kembali di dalam chat + tombol 'Back' bawaan HP otomatis kembali ke daftar chat.
-            * ✅ **Tema Lucu & Foto Tetap Aktif:** Pink Pastel + Animasi Cinta (My Boy) & Dark Blue (My Girl).
+            Pembaruan v1.4.0:
+            * 🚀 **100% Full Screen Edge-to-Edge:** Header pink statis dihilangkan, aplikasi tampil penuh seperti WhatsApp asli.
+            * 🎯 **Kartu QR & Login Nomor Pas di Layar:** Tidak ada lagi bagian yang terpotong! Kotak QR dan tombol otomatis pas di tengah layar HP.
+            * 🚫 **Banner Desktop Dihilangkan:** 'Unduh WhatsApp untuk Windows' disembunyikan total.
+            * ✨ **Floating Love Button:** Tombol cinta mini di pojok kanan bawah (ketuk untuk hujan hati, tekan lama untuk reload).
             
             ### Unduh File APK:
-            * **[MyBoy.apk](MyBoy.apk)**: Khusus dipasang di HP cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu).
-            * **[MyGirl.apk](MyGirl.apk)**: Khusus dipasang di HP kamu (Nama: **My Girl 💙**, Ikon: Foto cewekmu).
+            * **[MyBoy.apk](MyBoy.apk)**: Untuk cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).
+            * **[MyGirl.apk](MyGirl.apk)**: Untuk kamu (Nama: **My Girl 💙**, Ikon: Foto cewekmu, Tema Dark Blue).
             
             ### Cara Pakai Tanpa Scan QR:
             1. Buka aplikasi di HP cewekmu.
