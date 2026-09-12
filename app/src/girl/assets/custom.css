@@ -14,44 +14,36 @@
 }
 
 /* 1. Hilangkan banner desktop 'Unduh WhatsApp untuk Windows' */
-header,
-._ak8j,
-[data-testid="intro-md-beta-logo-light"],
+header._ak8j,
+header[data-testid="intro-md-beta-logo-light"],
 div[class*="banner"] {
   display: none !important;
 }
 
-/* 2. Kunci seluruh halaman selebar layar HP & larang geser horizontal */
+/* 2. Kunci seluruh halaman selebar layar HP */
 *, *::before, *::after {
   box-sizing: border-box !important;
 }
 
 html, body {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
   margin: 0 !important;
   padding: 0 !important;
-  overflow-x: hidden !important;
   background-color: #fff5f7 !important;
   font-size: 14px !important;
 }
 
-#app, #app > div, #app > div > div {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 0 !important;
+#app, #app > div {
+  width: 100% !important;
   height: 100% !important;
-  overflow-x: hidden !important;
-  position: relative !important;
 }
 
 /* 3. Kotak Putih Landing / QR Code & Login Nomor Telepon */
-/* Kunci ke 92vw dan susun rapi ke bawah agar pas di tengah tanpa terpotong */
 div[data-ref],
 div[data-testid="qrcode"],
 div[data-testid="link-device-qrcode"],
-._ak96, ._ak97, ._ak8l, ._ak8m, ._ak8q, ._ak8r,
+._ak96, ._ak97,
 div[class*="landing-wrapper"],
 div[class*="landing-window"],
 div[class*="landing-main"] {
@@ -59,8 +51,8 @@ div[class*="landing-main"] {
   flex-direction: column !important;
   align-items: center !important;
   justify-content: flex-start !important;
-  width: 92vw !important;
-  max-width: 92vw !important;
+  width: 94vw !important;
+  max-width: 94vw !important;
   min-width: 0 !important;
   margin: 16px auto !important;
   padding: 16px 12px !important;
@@ -70,7 +62,7 @@ div[class*="landing-main"] {
   background: #ffffff !important;
 }
 
-/* 4. Ukuran Gambar QR Code Pas di Layar */
+/* 4. Ukuran Gambar QR Code */
 canvas, img[alt*="Scan"], div[data-testid="qrcode"] svg, div[data-testid="qrcode"] {
   max-width: 200px !important;
   max-height: 200px !important;
@@ -80,7 +72,7 @@ canvas, img[alt*="Scan"], div[data-testid="qrcode"] svg, div[data-testid="qrcode
   display: block !important;
 }
 
-/* 5. Teks & Petunjuk Login Pas di Layar */
+/* 5. Teks & Petunjuk Login */
 h1, h2, div[class*="landing-title"], ._ak98, ._ak99 {
   font-size: 16px !important;
   font-weight: bold !important;
@@ -99,56 +91,19 @@ ol, ul, div[class*="instructions"] {
   color: #555555 !important;
 }
 
-/* 6. Chat List & Chat Room 1-Kolom Full Screen */
-#side {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 0 !important;
-  height: 100% !important;
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-#main {
-  width: 100vw !important;
-  max-width: 100vw !important;
-  min-width: 0 !important;
-  height: 100% !important;
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  bottom: 0 !important;
-  right: 0 !important;
-  z-index: 9999 !important;
-  background-color: #fff5f7 !important;
-  display: none !important;
-}
-
-body.chat-open #main {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
-body.chat-open #side {
-  display: none !important;
-}
-
-/* 7. Header Obrolan Pink Pastel */
+/* 6. Header Obrolan Pink Pastel */
 #main header {
-  display: flex !important;
   background-color: #ff6584 !important;
   color: #ffffff !important;
-  min-height: 54px !important;
 }
 
 #main header span, #main header svg, #main header [role="button"] {
   color: #ffffff !important;
 }
 
-/* 8. Bubble Chat Lucu */
+/* 7. Bubble Chat Lucu */
 .message-in, .message-out {
   border-radius: 16px !important;
-  max-width: 80% !important;
   font-size: 14.5px !important;
 }
 

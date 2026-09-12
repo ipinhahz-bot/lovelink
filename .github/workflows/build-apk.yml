@@ -48,16 +48,15 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.6.0
-          name: "My Boy 💕 & My Girl 💙 v1.6.0 (Fix Layar Pas & Theme Inject)"
+          tag_name: v1.7.0
+          name: "My Boy 💕 & My Girl 💙 v1.7.0 (Fix Chat Kosong Putih)"
           body: |
-            ## 📱 Pembaruan v1.6.0: Perbaikan Total Skala Layar & Auto-Fit!
+            ## 📱 Pembaruan v1.7.0: Perbaikan Tampilan Chat Tertaut (Anti Putih Kosong)!
             
-            Pembaruan v1.6.0:
-            * 🎯 **Tampilan 100% Pas di Layar HP:** Menggunakan viewport dan InitialScale dinamis berbasis resolusi layar HP, sehingga kotak QR dan nomor telepon TIDAK terpotong lagi ke kanan.
-            * 🎨 **Injeksi Tema CSP-Safe:** Menggunakan TextNode langsung agar tema warna (Pink Pastel / Dark Blue) tembus proteksi WhatsApp Web.
-            * 🚫 **Banner Desktop Dihilangkan:** Kotak 'Unduh WhatsApp untuk Windows' otomatis disembunyikan.
-            * 💬 **Chat 1-Kolom Fullscreen:** Begitu akun tertaut, obrolan tampil 1-kolom penuh layaknya WA asli.
+            Pembaruan v1.7.0:
+            * 🛠️ **Fix Layar Putih Kosong:** Memperbaiki layout CSS dan JS agar daftar chat dan ruang obrolan langsung muncul normal tanpa tertutup atau tersembunyi setelah akun berhasil ditautkan.
+            * 🎯 **Auto Scale Tetap Pas:** Kotak login, QR, dan chat tetap pas di layar HP Android.
+            * 🎨 **Tema Tetap Aktif:** Pink Pastel (My Boy) & Dark Blue (My Girl).
             
             ### Unduh File APK:
             * **[MyBoy.apk](MyBoy.apk)**: Untuk cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).

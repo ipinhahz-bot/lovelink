@@ -310,26 +310,15 @@ public class MainActivity extends AppCompatActivity {
             public void handleOnBackPressed() {
                 webView.evaluateJavascript(
                         "(function() { " +
-                        "  var main = document.getElementById('main'); " +
-                        "  var side = document.getElementById('side'); " +
-                        "  if (main && main.style.display !== 'none' && side) { " +
-                        "    main.style.display = 'none'; " +
-                        "    side.style.display = 'flex'; " +
-                        "    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true })); " +
-                        "    return 'handled'; " +
-                        "  } " +
-                        "  return 'none'; " +
+                        "  document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true })); " +
                         "})();",
-                        value -> {
-                            if (!"\"handled\"".equals(value)) {
-                                if (webView != null && webView.canGoBack()) {
-                                    webView.goBack();
-                                } else {
-                                    finish();
-                                }
-                            }
-                        }
+                        null
                 );
+                if (webView != null && webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    finish();
+                }
             }
         });
     }
