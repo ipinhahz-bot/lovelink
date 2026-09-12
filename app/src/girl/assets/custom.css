@@ -1,123 +1,45 @@
-/* =======================================================
-   PERBAIKAN TOTAL: LAYAR 100% PAS DI HP ANDROID (PINK PASTEL)
-   ======================================================= */
+/* ==========================================================
+   LOVELINK THEME - PINK PASTEL (NON-DESTRUCTIVE / STABIL)
+   Hanya mewarnai tanpa merusak layout internal WhatsApp Web
+   ========================================================== */
 
 :root {
   --primary-strong: #ff6584 !important;
   --primary: #ff758c !important;
   --teal: #ff6584 !important;
   --app-background: #fff5f7 !important;
-  --outgoing-background: #ffd1dc !important;
-  --incoming-background: #ffffff !important;
-  --system-message-background: rgba(255, 105, 135, 0.15) !important;
   --conversation-panel-background: #fff5f7 !important;
 }
 
-/* 1. Hilangkan banner desktop 'Unduh WhatsApp untuk Windows' */
-header._ak8j,
-header[data-testid="intro-md-beta-logo-light"],
-div[class*="banner"] {
-  display: none !important;
-}
-
-/* 2. Kunci seluruh halaman selebar layar HP */
-*, *::before, *::after {
-  box-sizing: border-box !important;
-}
-
-html, body {
-  width: 100% !important;
-  height: 100% !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  background-color: #fff5f7 !important;
-  font-size: 14px !important;
-}
-
-#app, #app > div {
-  width: 100% !important;
-  height: 100% !important;
-}
-
-/* 3. Kotak Putih Landing / QR Code & Login Nomor Telepon */
-div[data-ref],
-div[data-testid="qrcode"],
-div[data-testid="link-device-qrcode"],
-._ak96, ._ak97,
-div[class*="landing-wrapper"],
-div[class*="landing-window"],
-div[class*="landing-main"] {
-  display: flex !important;
-  flex-direction: column !important;
-  align-items: center !important;
-  justify-content: flex-start !important;
-  width: 94vw !important;
-  max-width: 94vw !important;
-  min-width: 0 !important;
-  margin: 16px auto !important;
-  padding: 16px 12px !important;
-  box-sizing: border-box !important;
-  border-radius: 18px !important;
-  box-shadow: 0 4px 16px rgba(255, 101, 132, 0.12) !important;
-  background: #ffffff !important;
-}
-
-/* 4. Ukuran Gambar QR Code */
-canvas, img[alt*="Scan"], div[data-testid="qrcode"] svg, div[data-testid="qrcode"] {
-  max-width: 200px !important;
-  max-height: 200px !important;
-  width: 55vw !important;
-  height: auto !important;
-  margin: 10px auto !important;
-  display: block !important;
-}
-
-/* 5. Teks & Petunjuk Login */
-h1, h2, div[class*="landing-title"], ._ak98, ._ak99 {
-  font-size: 16px !important;
-  font-weight: bold !important;
-  text-align: center !important;
-  max-width: 88vw !important;
-  margin: 8px 0 !important;
-  line-height: 1.4 !important;
-  color: #333333 !important;
-}
-
-ol, ul, div[class*="instructions"] {
-  max-width: 86vw !important;
-  padding-left: 20px !important;
-  font-size: 13px !important;
-  line-height: 1.5 !important;
-  color: #555555 !important;
-}
-
-/* 6. Header Obrolan Pink Pastel */
-#main header {
+/* 1. Header WhatsApp Pink Pastel */
+header {
   background-color: #ff6584 !important;
   color: #ffffff !important;
 }
 
-#main header span, #main header svg, #main header [role="button"] {
+header span, header svg, header [role="button"] {
   color: #ffffff !important;
 }
 
-/* 7. Bubble Chat Lucu */
-.message-in, .message-out {
-  border-radius: 16px !important;
-  font-size: 14.5px !important;
-}
-
-.message-out {
+/* 2. Bubble Chat Lucu */
+/* Pesan Keluar (Sent) - Baby Pink */
+.message-out > div {
   background-color: #ffd1dc !important;
-  border-bottom-right-radius: 4px !important;
+  border-radius: 12px !important;
 }
 
-.message-in {
+/* Pesan Masuk (Received) - Putih Bersih */
+.message-in > div {
   background-color: #ffffff !important;
-  border-bottom-left-radius: 4px !important;
+  border-radius: 12px !important;
 }
 
-footer {
-  background-color: #ffffff !important;
-  border-top: 1px solid #ffd1dc !important;
+/* 3. Aksen & Tombol Pink */
+[data-icon="send"], button[aria-label="Kirim"], button[aria-label="Send"] {
+  color: #ff6584 !important;
+}
+
+/* 4. Sembunyikan hanya banner unduh Windows jika ada */
+header._ak8j {
+  display: none !important;
 }

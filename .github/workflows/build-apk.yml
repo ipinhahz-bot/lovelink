@@ -48,15 +48,16 @@ jobs:
         uses: softprops/action-gh-release@v2
         if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         with:
-          tag_name: v1.7.0
-          name: "My Boy 💕 & My Girl 💙 v1.7.0 (Fix Chat Kosong Putih)"
+          tag_name: v1.8.0
+          name: "My Boy 💕 & My Girl 💙 v1.8.0 (Versi Stabil & Sinkronisasi Lancar)"
           body: |
-            ## 📱 Pembaruan v1.7.0: Perbaikan Tampilan Chat Tertaut (Anti Putih Kosong)!
+            ## 📱 Pembaruan v1.8.0: Rombak Total Arsitektur Bersih & Stabil!
             
-            Pembaruan v1.7.0:
-            * 🛠️ **Fix Layar Putih Kosong:** Memperbaiki layout CSS dan JS agar daftar chat dan ruang obrolan langsung muncul normal tanpa tertutup atau tersembunyi setelah akun berhasil ditautkan.
-            * 🎯 **Auto Scale Tetap Pas:** Kotak login, QR, dan chat tetap pas di layar HP Android.
-            * 🎨 **Tema Tetap Aktif:** Pink Pastel (My Boy) & Dark Blue (My Girl).
+            Pembaruan v1.8.0:
+            * 🚀 **Sinkronisasi Pesan 100% Lancar:** Menghapus seluruh loop agresif di background yang sebelumnya membekukan proses download pesan WhatsApp.
+            * 🛠️ **Tata Letak Alami & Utuh:** Tidak ada lagi layar putih kosong saat akun terhubung. Chat list dan ruang pesan muncul alami dan stabil.
+            * 🔍 **Pinch-to-Zoom & Overview Alami:** Bisa di-zoom manual sesuai kenyamanan tanpa takut elemen terpotong.
+            * 🎨 **Tema Lucu Non-Destruktif:** Pink Pastel (My Boy) & Dark Blue (My Girl) tetap aktif tanpa merusak fungsionalitas WhatsApp.
             
             ### Unduh File APK:
             * **[MyBoy.apk](MyBoy.apk)**: Untuk cewekmu (Nama: **My Boy 💕**, Ikon: Foto kamu, Tema Pink Pastel).
