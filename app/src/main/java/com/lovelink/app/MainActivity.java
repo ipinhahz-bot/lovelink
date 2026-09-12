@@ -185,17 +185,26 @@ public class MainActivity extends AppCompatActivity {
 
     private void injectCustomTheme() {
         try {
+            // 1. Inject custom CSS (theme and mobile 1-column layout)
             InputStream is = getAssets().open("custom.css");
             byte[] buffer = new byte[is.available()];
             is.read(buffer);
             is.close();
-            String encoded = Base64.encodeToString(buffer, Base64.NO_WRAP);
-            String js = "var parent = document.getElementsByTagName('head').item(0);" +
-                    "var style = document.createElement('style');" +
+            String encodedCss = Base64.encodeToString(buffer, Base64.NO_WRAP);
+            String cssJs = "var style = document.getElementById('custom-lovelink-css') || document.createElement('style');" +
+                    "style.id = 'custom-lovelink-css';" +
                     "style.type = 'text/css';" +
-                    "style.innerHTML = window.atob('" + encoded + "');" +
-                    "parent.appendChild(style);";
-            webView.evaluateJavascript(js, null);
+                    "style.innerHTML = window.atob('" + encodedCss + "');" +
+                    "if (!document.getElementById('custom-lovelink-css')) { document.head.appendChild(style); }";
+            webView.evaluateJavascript(cssJs, null);
+
+            // 2. Inject mobile adapter JS (viewport and back navigation)
+            InputStream isJs = getAssets().open("mobile_adapter.js");
+            byte[] jsBuffer = new byte[isJs.available()];
+            isJs.read(jsBuffer);
+            isJs.close();
+            String jsCode = new String(jsBuffer);
+            webView.evaluateJavascript(jsCode, null);
         } catch (Exception ignored) {
         }
     }
@@ -272,11 +281,25 @@ public class MainActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if (webView != null && webView.canGoBack()) {
-                    webView.goBack();
-                } else {
-                    finish();
-                }
+                webView.evaluateJavascript(
+                        "(function() { " +
+                        "  if (document.body.classList.contains('chat-open')) { " +
+                        "    document.body.classList.remove('chat-open'); " +
+                        "    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', code: 'Escape', keyCode: 27, which: 27, bubbles: true })); " +
+                        "    return 'handled'; " +
+                        "  } " +
+                        "  return 'none'; " +
+                        "})();",
+                        value -> {
+                            if (!"\"handled\"".equals(value)) {
+                                if (webView != null && webView.canGoBack()) {
+                                    webView.goBack();
+                                } else {
+                                    finish();
+                                }
+                            }
+                        }
+                );
             }
         });
     }
