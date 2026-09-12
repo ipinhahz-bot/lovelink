@@ -1,0 +1,7 @@
+<resources>
+    <color name="primaryColor">#1E293B</color>
+    <color name="primaryDarkColor">#0F172A</color>
+    <color name="textOnPrimary">#38BDF8</color>
+    <color name="accentColor">#0284C7</color>
+    <color name="bgCard">#334155</color>
+</resources>

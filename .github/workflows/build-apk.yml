@@ -1,0 +1,77 @@
+name: Build LoveLink APKs
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Setup Gradle
+        uses: gradle/actions/setup-gradle@v3
+
+      - name: Make Gradle executable
+        run: |
+          if [ -f "./gradlew" ]; then
+            chmod +x gradlew
+          fi
+
+      - name: Build Both Girl & Boy APKs
+        run: |
+          if [ -f "./gradlew" ]; then
+            ./gradlew assembleGirlDebug assembleBoyDebug --stacktrace
+          else
+            gradle assembleGirlDebug assembleBoyDebug --stacktrace
+          fi
+
+      - name: Prepare APK Outputs
+        run: |
+          mkdir -p release-apks
+          find app/build/outputs/apk/girl/debug -name "*.apk" -exec cp {} release-apks/LoveLink-Girl.apk \;
+          find app/build/outputs/apk/boy/debug -name "*.apk" -exec cp {} release-apks/LoveLink-Boy.apk \;
+          ls -la release-apks/
+
+      - name: Upload APKs as Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: LoveLink-APKs
+          path: release-apks/*.apk
+
+      - name: Create GitHub Release with APKs
+        uses: softprops/action-gh-release@v2
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+        with:
+          tag_name: v1.0.0
+          name: "LoveLink APKs v1.0.0"
+          body: |
+            ## 💕 LoveLink APKs Siap Install!
+            
+            Silakan unduh file APK sesuai perangkat:
+            * **[LoveLink-Girl.apk](LoveLink-Girl.apk)**: Khusus untuk pasanganmu (Tema Pink Pastel Lucu & Gemas).
+            * **[LoveLink-Boy.apk](LoveLink-Boy.apk)**: Khusus untuk kamu (Tema Dark Blue Elegan).
+            
+            ### Cara Pakai Tanpa Scan QR:
+            1. Buka APK di HP pasangan.
+            2. Klik **"Tautkan dengan nomor telepon"** & masukkan nomor WA kamu.
+            3. Muncul kode 8 digit $\rightarrow$ buka WA utama $\rightarrow$ Perangkat Tertaut $\rightarrow$ Masukkan kode tersebut.
+            4. Selesai!
+          files: |
+            release-apks/LoveLink-Girl.apk
+            release-apks/LoveLink-Boy.apk
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

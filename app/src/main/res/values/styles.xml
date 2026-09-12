@@ -1,0 +1,9 @@
+<resources>
+    <style name="Theme.LoveLink" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/primaryColor</item>
+        <item name="colorPrimaryVariant">@color/primaryDarkColor</item>
+        <item name="colorOnPrimary">@color/textOnPrimary</item>
+        <item name="android:statusBarColor">@color/primaryDarkColor</item>
+        <item name="android:navigationBarColor">@color/primaryDarkColor</item>
+    </style>
+</resources>

@@ -1,0 +1,17 @@
+/* LoveLink Dark Modern Blue Theme for WhatsApp Web */
+:root {
+  --primary-strong: #0284c7 !important;
+  --primary: #38bdf8 !important;
+  --teal: #0ea5e9 !important;
+  --app-background: #0f172a !important;
+  --outgoing-background: #0369a1 !important;
+  --incoming-background: #1e293b !important;
+}
+
+header {
+  background-color: #0f172a !important;
+}
+
+.message-in, .message-out {
+  border-radius: 12px !important;
+}

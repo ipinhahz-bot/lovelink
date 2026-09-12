@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">LoveLink</string>
+    <string name="guide_title">Panduan Tautkan Nomor (LDR)</string>
+    <string name="guide_message">1. Di layar bawah WhatsApp, klik: \"Tautkan dengan nomor telepon\"\n\n2. Masukkan nomor WhatsApp pasanganmu (contoh: +628123456789)\n\n3. Di layar ini akan muncul 8 Digit Kode (contoh: ABCD-1234)\n\n4. Kirim kode 8 digit itu ke pasanganmu\n\n5. Pasanganmu buka WA -> Titik 3 -> Perangkat Tertaut -> Masukkan kode tersebut\n\nSelesai! WA akan otomatis tersambung tanpa scan QR!</string>
+    <string name="btn_close">Mengerti 💕</string>
+    <string name="refresh">Muat Ulang</string>
+    <string name="love_sent">Cinta terkirim! 💕🥰</string>
+</resources>

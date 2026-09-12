@@ -1,0 +1,33 @@
+/* LoveLink Cute Pink Pastel Theme for WhatsApp Web */
+:root {
+  --primary-strong: #ff6584 !important;
+  --primary: #ff758c !important;
+  --teal: #ff6584 !important;
+  --app-background: #fff5f7 !important;
+  --outgoing-background: #ffd1dc !important;
+  --incoming-background: #ffffff !important;
+  --system-message-background: rgba(255, 105, 135, 0.15) !important;
+}
+
+header {
+  background-color: #ff6584 !important;
+}
+
+/* Rounded chat bubbles */
+.message-in, .message-out {
+  border-radius: 16px !important;
+}
+
+.message-out {
+  background-color: #ffd6df !important;
+}
+
+/* Cute soft borders */
+div[data-testid="chat-list"] {
+  border-right: 1px solid #ffd1dc !important;
+}
+
+/* Floating sweet message indicator */
+span[data-icon="status-v3"], span[data-icon="chat"] {
+  color: #ff6584 !important;
+}
